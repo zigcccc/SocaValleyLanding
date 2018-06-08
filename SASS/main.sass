@@ -25,6 +25,15 @@
     white-space: nowrap
     margin-top: -.25em
     margin-left: -.5em
+    &::after
+      content: ''
+      width: 20px
+      +headerGradient
+      height: 100%
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 0
 
 .fwd-grid-container
   width: 100%
