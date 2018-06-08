@@ -1,0 +1,48 @@
+.container
+  max-width: 100%
+  width: 750px
+  margin: 0 auto
+  display: flex
+  justify-content: space-between
+  position: relative
+  +mainTransition
+  @media screen and (min-width: 992px)
+    width: 970px
+  @media screen and (min-width: 1230px)
+    width: 1200px
+    
+
+img
+  width: 100%
+  height: auto
+
+#fab
+  width: 55px
+  height: 55px
+  position: fixed
+  bottom: 1em
+  right: 1em
+  background: $darkgreen
+  font-size: 1.5em
+  border-radius: 50%
+  box-shadow: 0 5px 20px rgba(0,0,0,.21)
+  display: flex
+  justify-content: center
+  align-items: center
+  +mainTransition
+  color: $white
+  &:hover
+    transform: scale(1.2)
+    cursor: pointer
+  @media screen and (max-width: 768px)
+    display: none
+
+.fwd-container
+  flex: 1
+
+#page-scroll
+  display: block
+  width: 100%
+  height: 500px
+  @media screen and (max-width: 768px)
+    display: none

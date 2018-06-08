@@ -1,3 +1,148 @@
 @import "colors"
 @import "typography"
 @import "mixins"
+
+// Remove before production
+@import "sideMenu"
+@import "container"
+// Remove before production
+
+// Actual template CSS
+.fwd-heading-container
+  position: relative
+  .fwd-heading
+    +heading
+    line-height: 1
+    margin-bottom: .5em
+    //margin-bottom: 2rem
+  .fwd-heading-bg
+    opacity: .05
+    +heading
+    font-size: 128px
+    position: absolute
+    width: calc(100% + 0.25em)
+    overflow: hidden
+    white-space: nowrap
+    margin-top: -.25em
+    margin-left: -.5em
+
+.fwd-grid-container
+  width: 100%
+  position: relative
+  @supports (display: grid)
+    display: grid
+    grid-template-columns: [col1-start] 1fr [col1-end col2-start] 1fr [col2-end col3-start] 1fr [col3-end col4-start] 1fr [col4-end col5-start] 1fr [col5-end]
+    grid-template-rows: [row1-start] 1fr [row1-end row2-start] 1fr [row2-end row3-start] 1fr [row3-end]
+    grid-gap: 10px
+  @media screen and (max-width: 768px)
+    display: block
+
+  article
+    max-width: 100%
+    height: 330px
+    position: relative
+    overflow: hidden
+    margin: 1em 0
+    a
+      text-decoration: none !important
+    @supports (display: grid)
+      margin: 0
+    @media screen and (max-width: 768px)
+      margin: 1em 0
+    .background-image
+      max-height: 100%
+      width: 100%
+      @supports (object-fit: cover)
+        height: 100%
+        display: flex
+        & > img
+          object-fit: cover
+    &:nth-child(1)
+      grid-column-start: col1-start
+      grid-column-end: col3-end
+      grid-row-start: row1-start
+      grid-row-end: row1-end
+    &:nth-child(2)
+      grid-column-start: col4-start
+      grid-column-end: col5-end
+      grid-row-start: row1-start
+      grid-row-end: row1-end
+    &:nth-child(3)
+      grid-column-start: col1-start
+      grid-column-end: col5-end
+      grid-row-start: row2-start
+      grid-row-end: row2-end
+    &:nth-child(4)
+      grid-column-start: col1-start
+      grid-column-end: col2-end
+      grid-row-start: row3-start
+      grid-row-end: row3-end
+    &:nth-child(5)
+      grid-column-start: col3-start
+      grid-column-end: col5-end
+      grid-row-start: row3-start
+      grid-row-end: row3-end
+    .fwd-article-content-container
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      display: flex
+      padding: 1.5em 1em
+      align-items: flex-end
+      &::after
+        content: ''
+        width: 100%
+        height: 100%
+        +articleGradient
+        position: absolute
+        bottom: 0
+        left: 0
+        right: 0
+        transform: translateY(50%)
+        +mainTransition(200ms)
+      &:hover
+        &::after
+          transform: translateY(0)
+        .fwd-article-content
+          .fwd-article-title
+            padding: 0 0 .25em
+            bottom: 100%
+          .fwd-article-excerpt
+            opacity: 1
+            visibility: visible
+            transform: translateY(0)
+        .fwd-article-cta
+          transform: scale(1.5)
+      .fwd-article-content
+        position: relative
+        z-index: 1
+        .fwd-article-title
+          +articleTitle
+          padding: 0
+          margin: 0
+          +bounceTransition(400ms)
+          position: absolute
+          bottom: 0
+        .fwd-article-excerpt
+          display: block
+          position: relative
+          padding: 0 .5em
+          +mainText
+          color: $white
+          margin-top: 0
+          margin-bottom: 0
+          max-width: 85%
+          opacity: 0
+          visibility: hidden
+          transform: translateY(100%)
+          +bounceTransition(400ms)
+      .fwd-article-cta
+        font-size: 32px
+        text-shadow: 0 5px 10px rgba(0,0,0,.5)
+        position: relative
+        z-index: 1
+        +bounceTransition(500ms)
+        & > a
+          color: $white
